@@ -11,7 +11,6 @@ public class PlayerMapper {
     final BoardMapper boardMapper;
     public PlayerDto toPlayerDto(Player player) {
         return PlayerDto.builder()
-                .id(player.getId())
                 .name(player.getName())
                 .board(boardMapper.toBoardDto(player.getBoard()))
                 .build();
@@ -19,7 +18,6 @@ public class PlayerMapper {
 
     public Player toPlayer(PlayerDto playerDto) {
         return Player.builder()
-                .id(playerDto.id())
                 .name(playerDto.name())
                 .board(boardMapper.toBoard(playerDto.board()))
                 .build();

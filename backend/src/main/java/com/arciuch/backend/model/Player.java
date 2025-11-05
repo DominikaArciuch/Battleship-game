@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Player {
-    private int id;
     private String name;
     private Board board;
 }
