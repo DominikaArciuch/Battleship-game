@@ -1,5 +1,6 @@
 package com.arciuch.backend.model;
 
+import com.arciuch.backend.enums.GameState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,5 +14,6 @@ public class Game {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
+    private GameState gameState;
     private boolean finished = false;
 }

@@ -1,25 +1,40 @@
 package com.arciuch.backend.mapper;
 
+import com.arciuch.backend.dto.CreatePlayer;
 import com.arciuch.backend.dto.PlayerDto;
+import com.arciuch.backend.dto.PlayerViewDto;
 import com.arciuch.backend.model.Player;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
 public class PlayerMapper {
     final BoardMapper boardMapper;
+    private Integer playersAmount = 0;
+
     public PlayerDto toPlayerDto(Player player) {
         return PlayerDto.builder()
+                .id(player.getId())
                 .name(player.getName())
                 .board(boardMapper.toBoardDto(player.getBoard()))
                 .build();
     }
 
-    public Player toPlayer(PlayerDto playerDto) {
+    public Player toPlayer(CreatePlayer createPlayer) {
+        playersAmount++;
         return Player.builder()
-                .name(playerDto.name())
-                .board(boardMapper.toBoard(playerDto.board()))
+//                .id(UUID.randomUUID().toString())
+                .id(playersAmount.toString())
+                .name(createPlayer.name())
+                .build();
+    }
+
+    public PlayerViewDto toPlayerViewDto(Player player) {
+        return  PlayerViewDto.builder()
+                .name(player.getName())
                 .build();
     }
 }

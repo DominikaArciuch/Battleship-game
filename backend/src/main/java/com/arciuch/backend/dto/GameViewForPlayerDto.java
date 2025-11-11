@@ -4,9 +4,9 @@ import com.arciuch.backend.enums.GameState;
 import lombok.Builder;
 
 @Builder
-public record GameDto(
-        PlayerDto player1,
-        PlayerDto player2,
+public record GameViewForPlayerDto(
+        PlayerDto activePlayer,
+        PlayerViewDto opponentPlayer,
         PlayerViewDto currentPlayer,
         GameState gameState,
         boolean finished
