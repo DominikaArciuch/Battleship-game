@@ -29,7 +29,7 @@ public class GameService {
         val player = playerFactory.createPlayer(createPlayer);
         if (waitingPlayers.size() == 1) {
             currentGame.setPlayer2(player);
-            currentGame.setGameState(GameState.READY_TO_START);
+            currentGame.setGameState(GameState.PLACING_SHIPS);
             waitingPlayers.clear();
         } else {
             currentGame.setPlayer1(player);
