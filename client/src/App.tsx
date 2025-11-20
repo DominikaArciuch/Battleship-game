@@ -1,24 +1,21 @@
-import { CssBaseline, Container, Box } from "@mui/material";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { Board } from "./components/Board.tsx";
-import { useState } from "react";
-import { Intro } from "./pages/Intro.tsx";
+import {CssBaseline, Container, Box} from "@mui/material";
+import {ThemeProvider, createTheme} from "@mui/material/styles";
+import {Intro} from "./pages/Intro.tsx";
+import {useGame} from "./context/GameContext.tsx";
+import {GameView} from "./pages/GameView.tsx";
 
 const theme = createTheme({
     palette: {
         mode: "dark",
-        primary: { main: "#88d219" },
+        primary: {main: "#88d219"},
     },
 });
 
 function App() {
-    const [playerName, setPlayerName] = useState<string | null>(null);
-
+    const {game} = useGame();
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
-
-            {/* 🔥 Fullscreen flex layout */}
+            <CssBaseline/>
             <Box
                 sx={{
                     minHeight: "100vh",
@@ -27,7 +24,6 @@ function App() {
                     alignItems: "center",
                 }}
             >
-                {/* 🔥 This container is now centered */}
                 <Container
                     maxWidth="md"
                     sx={{
@@ -37,7 +33,7 @@ function App() {
                         flexDirection: "column",
                     }}
                 >
-                    {!playerName ? <Intro onStart={setPlayerName} /> : <Board />}
+                    {!game ? <Intro/> : <GameView/>}
                 </Container>
             </Box>
         </ThemeProvider>

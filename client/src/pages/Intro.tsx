@@ -1,13 +1,25 @@
-import { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {useState} from "react";
+import {Box, Button, TextField, Typography} from "@mui/material";
+import {createGame} from "../api/gameApi.tsx";
+import { useGame } from "../context/GameContext.tsx";
 
 
-interface IntroProps {
-    onStart: (playerName: string) => void;
-}
-
-export function Intro({ onStart }: IntroProps) {
+export function Intro() {
     const [name, setName] = useState("");
+    const [loading, setLoading] = useState(false);
+    const { setGame } = useGame();
+
+    async function handleSubmit(name: string) {
+        try {
+            setLoading(true);
+            const game = await createGame(name);
+            setGame(game);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <Box
@@ -30,16 +42,16 @@ export function Intro({ onStart }: IntroProps) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 variant="outlined"
-                sx={{ width: 300 }}
+                sx={{width: 300}}
             />
 
             <Button
                 variant="contained"
-                disabled={!name.trim()}
-                onClick={() => onStart(name)}
-                sx={{ width: 200 }}
+                disabled={!name.trim() || loading}
+                onClick={() => handleSubmit(name)}
+                sx={{width: 200}}
             >
-                Join game
+                {loading ? "Loading..." : "Start Game"}
             </Button>
         </Box>
     );
