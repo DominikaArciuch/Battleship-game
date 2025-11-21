@@ -1,6 +1,6 @@
 package com.arciuch.backend.service;
 
-import com.arciuch.backend.dto.CreatePlayer;
+import com.arciuch.backend.dto.player.CreatePlayer;
 import com.arciuch.backend.dto.GameViewForPlayerDto;
 import com.arciuch.backend.enums.GameState;
 import com.arciuch.backend.factory.PlayerFactory;

@@ -1,6 +1,6 @@
 package com.arciuch.backend.factory;
 
-import com.arciuch.backend.dto.CreatePlayer;
+import com.arciuch.backend.dto.player.CreatePlayer;
 import com.arciuch.backend.mapper.PlayerMapper;
 import com.arciuch.backend.model.Player;
 import lombok.RequiredArgsConstructor;

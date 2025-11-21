@@ -1,4 +1,4 @@
-package com.arciuch.backend.dto;
+package com.arciuch.backend.dto.player;
 
 import lombok.Builder;
 

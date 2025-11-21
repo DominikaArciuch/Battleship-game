@@ -1,8 +1,8 @@
 package com.arciuch.backend.controller;
 
-import com.arciuch.backend.dto.CreatePlayer;
+import com.arciuch.backend.dto.player.CreatePlayer;
 import com.arciuch.backend.dto.GameViewForPlayerDto;
-import com.arciuch.backend.dto.RequestPlayer;
+import com.arciuch.backend.dto.player.RequestPlayer;
 import com.arciuch.backend.service.GameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

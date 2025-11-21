@@ -1,13 +1,11 @@
 package com.arciuch.backend.mapper;
 
-import com.arciuch.backend.dto.CreatePlayer;
-import com.arciuch.backend.dto.PlayerDto;
-import com.arciuch.backend.dto.PlayerViewDto;
+import com.arciuch.backend.dto.player.CreatePlayer;
+import com.arciuch.backend.dto.player.PlayerDto;
+import com.arciuch.backend.dto.player.PlayerViewDto;
 import com.arciuch.backend.model.Player;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
