@@ -1,8 +1,6 @@
-import type {CellType} from "./cellType.tsx";
-
-
+export type Position = [number, number];
 export interface ShipType {
     size: number;
-    cells: CellType[];
+    positions: Position[];
     sunk: boolean;
 }

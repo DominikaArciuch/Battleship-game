@@ -1,5 +1,5 @@
 import type {CreateGameRequestType, CreateGameResponseType} from "../types/gameType.tsx";
-import type {BoardType} from "../types/boardType.tsx";
+import type {Position} from "../types/shipType.tsx";
 
 export async function createGameApi(name: string): Promise<CreateGameResponseType> {
     const requestData: CreateGameRequestType = {name: name};
@@ -18,9 +18,9 @@ export async function createGameApi(name: string): Promise<CreateGameResponseTyp
     return response.json();
 }
 
-export async function placeShipsApi(board: BoardType, playerId: string) {
+export async function placeShipsApi(ships: Position[], playerId: string) {
     const requestData = {
-        board: board,
+        ships: ships,
         playerId: playerId,
     }
     console.log(requestData);

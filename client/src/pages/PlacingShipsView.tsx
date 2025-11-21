@@ -5,17 +5,26 @@ import type {BoardType} from "../types/boardType.tsx";
 import {CellStateType, type CellType} from "../types/cellType.tsx";
 import {Box, Button} from "@mui/material";
 import {placeShipsApi} from "../api/gameApi.tsx";
+import type {Position} from "../types/shipType.tsx";
 
 export function PlacingShipsView() {
     const {game} = useGame();
     const [board, setBoard] = useState<BoardType>(game!.activePlayer.board);
     const [loading, setLoading] = useState(false);
+    const [shipList, setShipList] = useState<Position[]>([]);
 
     function handlePlacingShip(cell: CellType) {
         const newState = cell.state === CellStateType.SHIP ? CellStateType.EMPTY : CellStateType.SHIP;
         const updatedCells: CellType[] = board.cells.map(c =>
             c.x === cell.x && c.y === cell.y ? {...c, state: newState} : c
         );
+
+        if (newState === CellStateType.SHIP) {
+            setShipList([...shipList, [cell.x, cell.y]])
+        } else {
+            setShipList(shipList.filter(pos => !(pos[0] === cell.x && pos[1] === cell.y)));
+        }
+
         setBoard({
             ...board,
             cells: updatedCells,
@@ -25,7 +34,7 @@ export function PlacingShipsView() {
     async function handleSave() {
         try {
             setLoading(true);
-            await placeShipsApi(board, game!.activePlayer.id);
+            await placeShipsApi(shipList, game!.activePlayer.id);
         } catch (error) {
             console.error(error);
         } finally {
