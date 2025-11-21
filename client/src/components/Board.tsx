@@ -1,11 +1,30 @@
-import { Box } from "@mui/material";
-import { motion } from "framer-motion";
+import {Box} from "@mui/material";
+import {motion} from "framer-motion";
+import type {BoardType} from "../types/boardType.tsx";
+import {CellStateType, type CellType} from "../types/cellType.tsx";
+import ShipIcon from "@mui/icons-material/SailingRounded";
+import {HitShipIcon} from "../icons/HitShipIcon.tsx";
 
 const MotionBox = motion.create(Box);
 
 const GRID_SIZE = 10;
 
-export function Board() {
+interface BoardProps {
+    board: BoardType;
+    handleClick: (cell: CellType) => void;
+}
+
+export function Board({board, handleClick}: BoardProps) {
+
+    function getCellContent(cell: CellType) {
+        switch (cell.state) {
+            case CellStateType.SHIP:
+                return <ShipIcon />;
+            case CellStateType.HIT:
+                return <HitShipIcon />;
+        }
+    }
+
     return (
         <Box
             display="grid"
@@ -17,17 +36,26 @@ export function Board() {
             borderRadius={2}
             overflow="hidden"
         >
-            {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => (
+            {board.cells.map((cell, i) => (
                 <MotionBox
                     key={i}
                     border="1px solid #64b5f6"
                     sx={{
-                        backgroundColor: "#e3f2fd",
+                        width: 60,
+                        height: 60,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        backgroundColor: "#549fd3",
                         cursor: "pointer"
                     }}
-                    whileHover={{ scale: 1.1, backgroundColor: "#63b3ed" }}
-                    whileTap={{ scale: 0.9, backgroundColor: "#3182ce" }}
-                />
+                    whileHover={{scale: 1.1, backgroundColor: "#63b3ed"}}
+                    whileTap={{scale: 0.9, backgroundColor: "#3182ce"}}
+                    onClick={() => handleClick(cell)}
+                >
+                    {getCellContent(cell)}
+                </MotionBox>
+
             ))}
         </Box>
     );

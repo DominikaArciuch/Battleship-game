@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Box, Button, TextField, Typography} from "@mui/material";
-import {createGame} from "../api/gameApi.tsx";
+import {createGameApi} from "../api/gameApi.tsx";
 import { useGame } from "../context/GameContext.tsx";
 
 
@@ -12,7 +12,7 @@ export function Intro() {
     async function handleSubmit(name: string) {
         try {
             setLoading(true);
-            const game = await createGame(name);
+            const game = await createGameApi(name);
             setGame(game);
         } catch (error) {
             console.error(error);
