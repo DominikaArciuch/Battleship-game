@@ -1,5 +1,6 @@
 package com.arciuch.backend.controller;
 
+import com.arciuch.backend.dto.PlaceShipsRequest;
 import com.arciuch.backend.dto.player.CreatePlayer;
 import com.arciuch.backend.dto.GameViewForPlayerDto;
 import com.arciuch.backend.dto.player.RequestPlayer;
@@ -20,15 +21,22 @@ public class GameController {
 
     @PostMapping
     public ResponseEntity<GameViewForPlayerDto> createGame(@RequestBody CreatePlayer player) {
-        log.info("Received request with player {} to create new game",player.name());
+        log.info("Received request with player {} to create new game", player.name());
         val game = gameService.joinGame(player);
         return ResponseEntity.status(HttpStatus.CREATED).body(game);
     }
 
     @GetMapping()
     public ResponseEntity<GameViewForPlayerDto> getGameForPlayer(@RequestBody RequestPlayer player) {
-        log.info("Received request with playerId {} to get game",player.playerId());
+        log.info("Received request with playerId {} to get game", player.playerId());
         val game = gameService.getGameForPlayer(player.playerId());
+        return ResponseEntity.status(HttpStatus.OK).body(game);
+    }
+
+    @PostMapping("/ships")
+    public ResponseEntity<GameViewForPlayerDto> placeShips(@RequestBody PlaceShipsRequest placeShipsRequest) {
+        log.info("Received request with playerId {} to place ships", placeShipsRequest.playerId());
+        val game = gameService.placeShips(placeShipsRequest);
         return ResponseEntity.status(HttpStatus.OK).body(game);
     }
 }

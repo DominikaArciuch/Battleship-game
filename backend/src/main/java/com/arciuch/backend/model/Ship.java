@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -13,6 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class Ship {
     private int size;
-    private List<Cell> cells;
+    private List<Cell> cells = new ArrayList<>();
     private boolean sunk = false;
 }
