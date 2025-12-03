@@ -78,7 +78,7 @@ public class GameService {
     private void isCellAdjacent(Cell shipCell, List<Cell> occupiedCells) {
         occupiedCells.stream().filter(c -> c != shipCell).forEach(c -> {
             if (Math.abs(c.getX() - shipCell.getX()) <= 1 && Math.abs(c.getY() - shipCell.getY()) <= 1) {
-                throw new ShipPlacementException("Invalid ship placement at cell");
+                throw new ShipPlacementException("Invalid ship placement: ships cannot be adjacent");
             }
         });
     }
@@ -114,7 +114,7 @@ public class GameService {
         for (Ship ship : ships) {
             for (Cell cell : ship.getCells()) {
                 if (!validateCellPlacement(cell)) {
-                    throw new ShipPlacementException("Invalid ship placement");
+                    throw new ShipPlacementException("Invalid ship placement: cell out of bounds");
                 }
             }
         }
