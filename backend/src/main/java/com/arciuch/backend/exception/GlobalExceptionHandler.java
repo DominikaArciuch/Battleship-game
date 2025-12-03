@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    record ErrorResponse(String message, int x, int y) {}
+    record ErrorResponse(String message) {
+    }
 
     @ExceptionHandler(ShipPlacementException.class)
     public ResponseEntity<?> handleShipOutOfBoardException(ShipPlacementException e) {
-        var error = new ErrorResponse(
-                e.getMessage(),
-                e.getX(),
-                e.getY()
-        );
+        var error = new ErrorResponse(e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(error);
