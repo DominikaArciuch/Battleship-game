@@ -4,6 +4,7 @@ export const GameStateType = {
     READY_TO_START: "READY_TO_START",
     PLACING_SHIPS: "PLACING_SHIPS",
     IN_PROGRESS: "IN_PROGRESS",
+    SHOOTING: "SHOOTING",
     FINISHED: "FINISHED",
 }
 
@@ -17,7 +18,7 @@ export interface CreateGameRequestType {
 
 // --------- RESPONSES ---------
 
-export interface CreateGameResponseType {
+export interface GameResponseType {
     activePlayer: PlayerType;
     opponentPlayer: OpponentType;
     currentPlayer: PlayerType;

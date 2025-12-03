@@ -1,22 +1,22 @@
 // src/context/GameContext.tsx
 import {createContext, useContext, useState, type PropsWithChildren} from "react";
-import type {CreateGameResponseType} from "../types/gameType.tsx";
+import type {GameResponseType} from "../utils/types/gameType.tsx";
 
 interface GameContextValue {
-    game: CreateGameResponseType | null;
-    setGame: (game: CreateGameResponseType) => void;
+    game: GameResponseType | null;
+    setGame: (game: GameResponseType) => void;
 }
 
 const GameContext = createContext<GameContextValue | undefined>(undefined);
 
 export function GameProvider({children}: PropsWithChildren) {
-    const [game, setGameState] = useState<CreateGameResponseType | null>(() => {
+    const [game, setGameState] = useState<GameResponseType | null>(() => {
         // const savedGame = localStorage.getItem("game");
         // return savedGame ? JSON.parse(savedGame) : null;
         return null;
     });
 
-    const setGame = (game: CreateGameResponseType) => {
+    const setGame = (game: GameResponseType) => {
         setGameState(game);
         localStorage.setItem("game", JSON.stringify(game));
     };

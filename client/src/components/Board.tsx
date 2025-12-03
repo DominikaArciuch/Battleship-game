@@ -1,7 +1,7 @@
 import {Box} from "@mui/material";
 import {motion} from "framer-motion";
-import type {BoardType} from "../types/boardType.tsx";
-import {CellStateType, type CellType} from "../types/cellType.tsx";
+import type {BoardType} from "../utils/types/boardType.tsx";
+import {CellStateType, type CellType} from "../utils/types/cellType.tsx";
 import ShipIcon from "@mui/icons-material/SailingRounded";
 import {HitShipIcon} from "../icons/HitShipIcon.tsx";
 

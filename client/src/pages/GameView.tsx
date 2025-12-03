@@ -1,5 +1,5 @@
 import {useGame} from "../context/GameContext.tsx";
-import {GameStateType} from "../types/gameType.tsx";
+import {GameStateType} from "../utils/types/gameType.tsx";
 import {PlacingShipsView} from "./PlacingShipsView.tsx";
 
 export function GameView() {
