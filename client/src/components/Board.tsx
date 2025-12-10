@@ -12,9 +12,10 @@ const GRID_SIZE = 10;
 interface BoardProps {
     board: BoardType;
     handleClick: (cell: CellType) => void;
+    disabled?: boolean;
 }
 
-export function Board({board, handleClick}: BoardProps) {
+export function Board({board, handleClick, disabled}: BoardProps) {
 
     function getCellContent(cell: CellType) {
         switch (cell.state) {
@@ -35,11 +36,15 @@ export function Board({board, handleClick}: BoardProps) {
             border="2px solid #90caf9"
             borderRadius={2}
             overflow="hidden"
+            sx={{
+                pointerEvents: disabled ? "none" : "auto"
+            }}
         >
             {board.cells.map((cell, i) => (
                 <MotionBox
                     key={i}
                     border="1px solid #64b5f6"
+
                     sx={{
                         width: 60,
                         height: 60,
